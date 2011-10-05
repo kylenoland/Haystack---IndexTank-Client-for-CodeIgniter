@@ -2,7 +2,7 @@
 
 ##Load the Haystack library
 ```php
-	$this->load->library('Haystack');
+$this->load->library('Haystack');
 ```
 
 
