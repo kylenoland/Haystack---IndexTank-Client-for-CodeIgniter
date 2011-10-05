@@ -1,8 +1,9 @@
+<?php
+
 #Basic Haystack Usage
 
 ##Load the Haystack library
-```php
-<?php
+```
 $this->load->library('Haystack');
 ```
 
