@@ -196,7 +196,7 @@ class Haystack
 		$index = str_replace('/', '_', $index_name);	// Index names cannot contain forward slashes
 		
 		$this->set_index($index);
-		$this->set_api_cal_url();
+		$this->set_api_call_url();
 		
 		$response = $this->api_call('PUT', array('public_search' => $public_search));
 		
@@ -223,7 +223,7 @@ class Haystack
 	 * @param string $index_name
 	 * @return bool
 	 */
-	function delete_index($index)
+	function delete_index($index, $continue_on_failure = FALSE)
 	{
 		$this->set_index($index);
 		$this->set_api_call_url();
@@ -236,7 +236,7 @@ class Haystack
 				return TRUE;
 			case 204:
 				log_message('error', "IndexTank 204: No indexes existed for that name ($index).");
-				return FALSE;
+				return $continue_on_failure;
 			default:
 				log_message('error', "IndexTank {$response->status}: An undefined error occurred.");
 				return FALSE;
@@ -551,6 +551,14 @@ class Haystack
 		// Filter stopwords
 		$terms = $this->filter_stopwords($terms);
 		
+		// The query contained only stopwords
+		if($terms == '')
+		{
+			$response['matches'] = 0;
+			$response['didyoumean'] = NULL;
+			return (object) $response;
+		}
+		
 		$query['q'] = $terms;
 		
 		if( ! is_null($start))
@@ -638,15 +646,8 @@ class Haystack
 				return FALSE;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 	/**
 	 * Helper function to cast all array values to strings. IndexTank will not accept numeric values for document categories.
 	 * 
