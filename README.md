@@ -1,7 +1,9 @@
 #Basic Haystack Usage
 
 ##Load the Haystack library
+```php
 	$this->load->library('Haystack');
+```
 
 
 ##Create a new IndexTank search index
