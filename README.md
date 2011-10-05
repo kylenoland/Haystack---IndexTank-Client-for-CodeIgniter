@@ -4,11 +4,19 @@
 ```php
 <?php
 
-$this->load->library('Haystack');
+	$this->load->library('Haystack');
+	
+?>
 ```
 
 ##Create a new IndexTank search index
+```php
+<?php
+
 	$this->haystack->create_index('cars');
+	
+?>
+```
 
 
 ##Set the index to work with for the next one or more IndexTank API calls
