@@ -20,10 +20,18 @@
 
 
 ##Set the index to work with for the next one or more IndexTank API calls
+```php
+<?php
+	
 	$this->haystack->set_index('cars');
+?>
+```
 
 
 ##Add a single document to the currently selected index
+```php
+<?php
+
 	$docid = 1;
 	$fields = array(
 		'text' => 'The Chevrolet Impala is a full-size automobile built by the Chevrolet division of General Motors introduced for the 1958 model year.',
@@ -31,8 +39,14 @@
 	
 	$this->haystack->add_document($docid, $fields);
 	
-	
+?>
+```
+
+
 ##Add multiple documents to the currently selected index
+```php
+<?php
+
 	$docs = array(
 		array(
 			'docid' => 1,
@@ -50,17 +64,35 @@
 	
 	$this->haystack->add_documents($docs);
 	
-	
+?>
+```
+
+
 ##Delete a single document from the currently selected index
+```php
+<?php
+
 	$this->haystack->delete_document($docid = 1);
+	
+?>
+```
 
 
 ##Delete multiple documents from the currently selected index
+```php
+<?php
+
 	$docids = array(1, 2, 3, 10);
 	$this->haystack->delete_documents($docids);
+	
+?>
+```
 
 
 ##Select a different search index to work with and add a new document
+```php
+<?php
+
 	$this->haystack->set_index('trucks');
 	$docid = 12;
 	$fields = array(
@@ -69,12 +101,24 @@
 	
 	$this->haystack->add_document($docid, $fields);
 	
-	
+?>
+```
+
+
 ##Delete an entire search index and all of its documents
+```php
+<?php
+
 	$this->haystack->delete_index('vans');
+	
+?>
+```
 
 
 ##Search in the currently selected index
+```php
+<?php
+
 	$terms = "monster truck";
 	$results = $this->haystack->search($terms);
 
@@ -90,3 +134,6 @@
 			echo "Found document {$doc->docid}<br />";
 		}
 	}
+	
+?>
+```
